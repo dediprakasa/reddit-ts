@@ -9,32 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Post = void 0;
-const core_1 = require("@mikro-orm/core");
-let Post = class Post {
-    constructor() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+exports.HelloResolver = void 0;
+const type_graphql_1 = require("type-graphql");
+let HelloResolver = class HelloResolver {
+    hello() {
+        return "jello world";
     }
 };
 __decorate([
-    core_1.PrimaryKey(),
-    __metadata("design:type", Number)
-], Post.prototype, "id", void 0);
-__decorate([
-    core_1.Property({ type: "date" }),
-    __metadata("design:type", Object)
-], Post.prototype, "createdAt", void 0);
-__decorate([
-    core_1.Property({ type: "date", onUpdate: () => new Date() }),
-    __metadata("design:type", Object)
-], Post.prototype, "updatedAt", void 0);
-__decorate([
-    core_1.Property({ type: "text" }),
-    __metadata("design:type", String)
-], Post.prototype, "title", void 0);
-Post = __decorate([
-    core_1.Entity()
-], Post);
-exports.Post = Post;
-//# sourceMappingURL=Post.js.map
+    type_graphql_1.Query(() => String),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], HelloResolver.prototype, "hello", null);
+HelloResolver = __decorate([
+    type_graphql_1.Resolver()
+], HelloResolver);
+exports.HelloResolver = HelloResolver;
+//# sourceMappingURL=hello.js.map

@@ -1,9 +1,8 @@
-import { Post } from "./entitites/Post";
+import { Post } from "./entities/Post";
 import { ___prod___ } from "./constans";
 import { MikroORM } from "@mikro-orm/core";
 import path from "path";
 
-console.log(">>>>", __dirname);
 export default {
   migrations: {
     path: path.join(__dirname, "./migrations"),
@@ -12,7 +11,6 @@ export default {
   entities: [Post],
   dbName: "reddit",
   type: "postgresql",
-  user: "postgres",
-  password: "ubuntu",
+  user: "redditadm",
   debug: !___prod___,
 } as Parameters<typeof MikroORM.init>[0];
