@@ -10,7 +10,9 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { Form, Formik, FormikProps } from "formik";
 import React, { useState } from "react";
+import InputField from "../components/InputField";
 
 const Register: React.FC = () => {
   const [text, setText] = useState<string>();
@@ -27,21 +29,39 @@ const Register: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <IonItem>
-          <IonLabel position="stacked">Username</IonLabel>
-          <IonInput value={text}></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonLabel position="stacked">Password</IonLabel>
-          <IonInput type="password" value={password}></IonInput>
-        </IonItem>
-        <IonButton
-          expand="block"
-          color="primary"
-          onClick={() => handleSubmit()}
+        <Formik
+          initialValues={{
+            username: "",
+            password: "",
+          }}
+          onSubmit={(values, actions) => {
+            console.log(values);
+          }}
         >
-          {isLoading ? <IonSpinner /> : <IonLabel>Register</IonLabel>}
-        </IonButton>
+          {({ isSubmitting }) => (
+            <Form>
+              <InputField
+                name="username"
+                label="Username"
+                type="text"
+                placeholder="e.g. johndoe"
+              />
+              <InputField
+                name="password"
+                label="Password"
+                type="password"
+                placeholder="Minimum of 4 characters"
+              />
+              <IonButton
+                type="submit"
+                expand="block"
+                className="ion-margin-top"
+              >
+                {isSubmitting ? <IonSpinner></IonSpinner> : "Register"}
+              </IonButton>
+            </Form>
+          )}
+        </Formik>
       </IonContent>
     </IonPage>
   );
