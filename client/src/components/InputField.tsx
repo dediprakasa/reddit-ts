@@ -12,16 +12,22 @@ type InputFieldProps = {
 const InputField: React.FC<InputFieldProps> = (props) => {
   const [{ name, value, onChange }, { error }] = useField(props);
   return (
-    <IonItem>
-      <IonLabel position="stacked">{props.label}</IonLabel>
-      <IonInput
-        id={name}
-        value={value}
-        onIonChange={onChange}
-        {...props}
-      ></IonInput>
-      {error ? <p>Something went wrong</p> : null}
-    </IonItem>
+    <>
+      <IonItem>
+        <IonLabel position="stacked">{props.label}</IonLabel>
+        <IonInput
+          id={name}
+          value={value}
+          onIonChange={onChange}
+          {...props}
+        ></IonInput>
+      </IonItem>
+      {error ? (
+        <IonItem lines="none">
+          <IonLabel color="danger">{error}</IonLabel>
+        </IonItem>
+      ) : null}
+    </>
   );
 };
 

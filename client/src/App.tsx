@@ -9,6 +9,7 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
+import { Provider, createClient } from "urql";
 import { ellipse, square, triangle } from "ionicons/icons";
 import Tab1 from "./pages/Tab1";
 import Tab2 from "./pages/Tab2";
@@ -34,11 +35,19 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import Register from "./pages/Register";
 
+const client = createClient({
+  url: "http://localhost:4000/graphql",
+  fetchOptions: {
+    credentials: "include",
+  },
+});
+
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <Register />
-      {/* <IonTabs>
+  <Provider value={client}>
+    <IonApp>
+      <IonReactRouter>
+        <Register />
+        {/* <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
             <Tab1 />
@@ -68,8 +77,9 @@ const App: React.FC = () => (
           </IonTabButton>
         </IonTabBar>
       </IonTabs> */}
-    </IonReactRouter>
-  </IonApp>
+      </IonReactRouter>
+    </IonApp>
+  </Provider>
 );
 
 export default App;
