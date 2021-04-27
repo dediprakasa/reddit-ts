@@ -12,7 +12,6 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Provider, createClient } from "urql";
 import { ellipse, square, triangle } from "ionicons/icons";
 
-
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -47,7 +46,9 @@ const App: React.FC = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route path="/register" component={Register} />
-          <Route path="/" component={Main} />
+          <Route path="/main" component={Main} />
+          <Redirect exact from="/" to="/main/tab1" />
+          <Redirect exact from="/main" to="/main/tab1" />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
