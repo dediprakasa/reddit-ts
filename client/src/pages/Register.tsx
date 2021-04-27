@@ -12,6 +12,7 @@ import {
 } from "@ionic/react";
 import { Form, Formik, FormikProps } from "formik";
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import InputField from "../components/InputField";
 import { useRegisterMutation } from "../generated/graphql";
 import { toErrorMap } from "../utils/toErrorMap";
@@ -23,6 +24,7 @@ const Register: React.FC<registerProps> = () => {
   const [password, setPassword] = useState<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [, register] = useRegisterMutation();
+  const history = useHistory();
 
   const handleSubmit = () => {
     setIsLoading(!isLoading);
@@ -46,8 +48,7 @@ const Register: React.FC<registerProps> = () => {
             if (response.data?.register.errors) {
               setErrors(toErrorMap(response.data.register.errors));
             } else if (response.data?.register.user) {
-              console.log("YAAA");
-              // history.pushState()
+              history.push("/")
             }
           }}
         >
