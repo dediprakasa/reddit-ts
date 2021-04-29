@@ -29,7 +29,7 @@ const Login: React.FC<{}> = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Register</IonTitle>
+          <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -67,6 +67,13 @@ const Login: React.FC<{}> = () => {
                 className="ion-margin-top"
               >
                 {isSubmitting ? <IonSpinner></IonSpinner> : "Login"}
+              </IonButton>
+              <IonButton
+                routerLink="/register"
+                expand="block"
+                className="ion-margin-top"
+              >
+                Register
               </IonButton>
             </Form>
           )}

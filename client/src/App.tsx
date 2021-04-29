@@ -31,7 +31,8 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import Register from "./pages/Register";
-import Main from "./pages/Main";
+import Tabs from "./Tabs";
+import Login from "./pages/Login";
 
 const client = createClient({
   url: "http://localhost:4000/graphql",
@@ -45,11 +46,19 @@ const App: React.FC = () => (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/register" component={Register} />
-          <Route path="/main" component={Main} />
-          <Redirect exact from="/" to="/main/tab1" />
-          <Redirect exact from="/main" to="/main/tab1" />
+          <Route path="/register">
+            <Redirect to="/main/tab3" />
+          </Route>
+          <Route path="/login">
+            <Redirect to="/main/tab3" />
+          </Route>
+          <Route path="/" exact={true}>
+            <Redirect to="/main/tab1" />
+          </Route>
         </IonRouterOutlet>
+        <Route path="/main">
+          <Tabs />
+        </Route>
       </IonReactRouter>
     </IonApp>
   </Provider>
